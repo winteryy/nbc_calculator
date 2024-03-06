@@ -1,20 +1,15 @@
 package com.winterry.nbc_calculator
 
 import java.math.BigDecimal
-import java.math.RoundingMode
-import java.util.Stack
 
 class Calculator private constructor() {
 
-    private val addOperation = AddOperation()
-    private val substractOperation = SubstractOperation()
-    private val multiplyOperation = MultiplyOperation()
-    private val divideOperation = DivideOperation()
-    private val moduloOperation = ModuloOperation()
-    private val converter = PostfixConverter()
+    private val postfixConverter = PostfixConverter()
+    private val postfixCalculator = PostfixCalculator()
 
     companion object {
         private var instance: Calculator? = null
+
         private val OPERATORS = listOf("+", "-", "*", "/", "%")
         private const val EXIT = "exit"
         private const val CLEAR = "clear"
@@ -42,57 +37,12 @@ class Calculator private constructor() {
                 continue
             }
 
-            postfixCalc(converter.convertToPostfix(originExpression))?.let {
+            postfixCalculator.postfixCalc(postfixConverter.convertToPostfix(originExpression))?.let {
                 println("\n[연산결과]: $it")
             } ?: println("\n0으로 나누는 수식이 존재하거나, 표현할 수 없는 범위의 수식입니다.")
             printDivideLine()
         }
 
-
-    }
-
-    private fun postfixCalc(convertedExpression: List<String>): BigDecimal? {
-        val numStack = Stack<BigDecimal>()
-
-        for(cmd in convertedExpression) {
-            when(cmd) {
-                "+" -> {
-                    val rValue = numStack.pop()
-                    val lValue = numStack.pop()
-
-                    numStack.push(addOperation.operate(lValue, rValue)?:return null)
-                }
-                "-" -> {
-                    val rValue = numStack.pop()
-                    val lValue = numStack.pop()
-
-                    numStack.push(substractOperation.operate(lValue, rValue)?:return null)
-                }
-                "*" -> {
-                    val rValue = numStack.pop()
-                    val lValue = numStack.pop()
-
-                    numStack.push(multiplyOperation.operate(lValue, rValue)?:return null)
-                }
-                "/" -> {
-                    val rValue = numStack.pop()
-                    val lValue = numStack.pop()
-
-                    numStack.push(divideOperation.operate(lValue, rValue)?:return null)
-                }
-                "%" -> {
-                    val rValue = numStack.pop()
-                    val lValue = numStack.pop()
-
-                    numStack.push(moduloOperation.operate(lValue, rValue)?:return null)
-                }
-                else -> {
-                    numStack.push(BigDecimal(cmd))
-                }
-            }
-        }
-
-        return numStack.peek().setScale(3, RoundingMode.HALF_EVEN).stripTrailingZeros()
     }
 
     private fun inputExpression(): List<String> {
