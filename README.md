@@ -4,10 +4,10 @@
 ### 실행 이미지(Main.kt)
 
 <p align="center" width="100%">
-    <image src = "https://picsum.photos/712/321" width="65%" >
-    <image src = "https://picsum.photos/510/734" width="30%" >
-    <image src = "https://picsum.photos/370/409" width="45%" >
-    <image src = "https://picsum.photos/518/420" width="45%" >
+    <image src = "https://github.com/winteryy/nbc_calculator/blob/develop/screenshots/exc1.png" width="65%" >
+    <image src = "https://github.com/winteryy/nbc_calculator/blob/develop/screenshots/exc2.png" width="30%" >
+    <image src = "https://github.com/winteryy/nbc_calculator/blob/develop/screenshots/exc3.png" width="45%" >
+    <image src = "https://github.com/winteryy/nbc_calculator/blob/develop/screenshots/exc4.png" width="45%" >
 </p>
 
 ### 요구사항
