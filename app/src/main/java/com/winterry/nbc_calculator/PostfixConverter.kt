@@ -4,7 +4,7 @@ import java.util.Stack
 
 class PostfixConverter {
     companion object {
-        private val opListForConvert = listOf("+", "-", "*", "/", "(", ")")
+        private val opListForConvert = listOf("+", "-", "*", "/", "%", "(", ")")
     }
 
     fun convertToPostfix(expression: List<String>): List<String> {
@@ -65,7 +65,7 @@ class PostfixConverter {
 
     private fun getPriority(op: String): Int {
         return when(op) {
-            "*", "/" -> 3
+            "*", "/", "%" -> 3
             "+", "-" -> 2
             "(" -> 1
             else -> -1
