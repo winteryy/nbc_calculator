@@ -59,7 +59,7 @@ class Calculator private constructor() {
 
         while(true) {
             print("\n[현재 수식]: ")
-            if(expression.size==0) print("None") else expression.forEach { print(it) }
+            if(expression.size==0) print("None") else expression.forEach { print("$it ") }
             println("\n숫자나 연산자 혹은 커맨드를 입력하세요.")
 
             cmd = readln()
